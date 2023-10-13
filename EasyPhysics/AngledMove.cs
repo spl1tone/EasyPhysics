@@ -38,12 +38,12 @@ namespace EasyPhysics
                 output_text.Text = $"Кут = {task.Angle}\nt підйому = {task.HalfTime} с\nt польоту = {task.AllTime} с\n" +
                $"v0 = {task.V0} м/c\nv0x = {task.V0X} м/c\nv0y = {task.V0Y} м/c\n" +
                $"hmax = {task.Hmax} м\nsx = {task.SX} м" +
-               $"\nv({t1_text.Text}) = {absoluteV} м/c\ns({t1_text.Text}) = {absoluteS} м\nh({t1_text.Text}) = {absoluteH} м";
+               $"\nv({t1_text.Text}) = {absoluteV} м/c\ns({t1_text.Text}) = {absoluteS} м\nh({t1_text.Text}) = {absoluteH} м\n" + task.Formulas;
             }
             else {
                 output_text.Text = $"Кут = {task.Angle}\nt підйому = {task.HalfTime} с\nt польоту = {task.AllTime} с\n" +
                $"v0 = {task.V0} м/c\nv0x = {task.V0X} м/c\nv0y = {task.V0Y} м/c\n" +
-               $"hmax = {task.Hmax} м\nsx = {task.SX} м";
+               $"hmax = {task.Hmax} м\nsx = {task.SX} м\n " + task.Formulas;
             }
 
 

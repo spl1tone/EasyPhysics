@@ -15,6 +15,7 @@ namespace EasyPhysics.Tasks.Kinematics
 
         private const int RoundCount = 3;
 
+        public string Formulas { get; set; }
 
         public void SolveTask ()
         {
@@ -26,6 +27,12 @@ namespace EasyPhysics.Tasks.Kinematics
                     FindV0X();
                     FindV0Y();
                     FindSX();
+                    Formulas = $"1. tпольоту = tпідйому * 2\n" +
+                        $"2. hmax = (g * tпідйому^2) / 2\n" +
+                        $"3. v0 = (g * tпідйому)/ sin({Angle})\n" +
+                        $"4. v0x = v0 * cos({Angle})\n" +
+                        $"5. voy = v0 * sin({Angle})\n" +
+                        $"6. Sx = v0x * tпольоту\n";
                 }
                 else if (AllTime != null) {
                     FindHalfTime();
@@ -34,6 +41,12 @@ namespace EasyPhysics.Tasks.Kinematics
                     FindV0X();
                     FindV0Y();
                     FindSX();
+                    Formulas = $"1. tпідйому = tпольоту / 2\n" +
+                        $"2. hmax = (g * tпідйому^2) / 2\n" +
+                        $"3. v0 = (g * tпідйому)/ sin({Angle})\n" +
+                        $"4. v0x = v0 * cos({Angle})\n" +
+                        $"5. voy = v0 * sin({Angle})\n" +
+                        $"6. Sx = v0x * tпольоту";
                 }
                 else if (V0 != null) {
                     FindV0X();
@@ -42,14 +55,26 @@ namespace EasyPhysics.Tasks.Kinematics
                     FindAllTime();
                     FindHmax();
                     FindSX();
+                    Formulas = $"1. v0x = v0 * cos({Angle})\n" +
+                        $"2. voy = v0 * sin({Angle})\n" +
+                        $"3. tпідйому = v0y / g\n" +
+                        $"4. tпольоту = tпідйому * 2\n" +
+                        $"5. hmax = (g * tпідйому^2) / 2\n" +
+                        $"6. Sx = v0x * tпольоту";
                 }
                 else if (V0X != null) {
                     FindV0();
+                    FindV0Y();
                     FindHalfTime();
                     FindAllTime();
                     FindHmax();
-                    FindV0Y();
                     FindSX();
+                    Formulas = $"1. v0 = v0x / cos({Angle})\n" +
+                        $"2. voy = v0 * sin({Angle})\n" +
+                        $"3. tпідйому = v0y / g\n" +
+                        $"4. tпольоту = tпідйому * 2\n" +
+                        $"5. hmax = (g * tпідйому^2) / 2\n" +
+                        $"6. Sx = v0x * tпольоту";
                 }
                 else if (V0Y != null) {
                     FindV0();
@@ -58,6 +83,12 @@ namespace EasyPhysics.Tasks.Kinematics
                     FindAllTime();
                     FindHmax();
                     FindSX();
+                    Formulas = $"1. v0 = v0y / sin({Angle})\n" +
+                        $"2. vox = v0 * cos({Angle})\n" +
+                        $"3. tпідйому = v0y / g\n" +
+                        $"4. tпольоту = tпідйому * 2\n" +
+                        $"5. hmax = (g * tпідйому^2) / 2\n" +
+                        $"6. Sx = v0x * tпольоту";
                 }
                 else if (Hmax != null) {
                     FindHalfTime();
@@ -66,14 +97,26 @@ namespace EasyPhysics.Tasks.Kinematics
                     FindV0X();
                     FindV0Y();
                     FindSX();
+                    Formulas = $"1. tпідйому = √(2h/g)\n" +
+                        $"2. tпольоту = tпідйому * 2\n" +
+                        $"3. v0 = (g * tпідйому)/ sin({Angle})\n" +
+                        $"4. vox = v0 * cos({Angle})\n" +
+                        $"5. voy = v0 * sin({Angle})\n" +
+                        $"6. Sx = v0x * tпольоту";
                 }
                 else if (SX != null) {
                     FindV0();
+                    FindV0X();
+                    FindV0Y();
                     FindHalfTime();
                     FindAllTime();
                     FindHmax();
-                    FindV0X();
-                    FindV0Y();
+                    Formulas = $"1. v0 = √(Sx * g)/ 2 * cos({Angle}) * sin({Angle})\n" +
+                        $"2. vox = v0 * cos({Angle})\n" +
+                        $"3. voy = v0 * sin({Angle})\n" +
+                        $"4. tпідйому = v0y / g\n" +
+                        $"5.tпольоту = tпідйому * 2\n" +
+                        $"6. hmax = (g * tпідйому^2) / 2";
                 }
             }
         }
