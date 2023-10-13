@@ -8,13 +8,13 @@ namespace EasyPhysics.Tasks.Kinematics
         public double? HalfTime { get; set; } = null;
         public double? AllTime { get; set; } = null;
         public double? V0 { get; set; } = null;
-        public double? VX0 { get; set; } = null;
-        public double? VY0 { get; set; } = null;
+        public double? V0X { get; set; } = null;
+        public double? V0Y { get; set; } = null;
         public double? Hmax { get; set; } = null;
-        public double? S { get; set; } = null;
-
+        public double? SX { get; set; } = null;
 
         private const int RoundCount = 3;
+
 
         public void SolveTask ()
         {
@@ -23,57 +23,57 @@ namespace EasyPhysics.Tasks.Kinematics
                     FindAllTime();
                     FindHmax();
                     FindV0();
-                    FindVX0();
-                    FindVY0();
-                    FindS();
+                    FindV0X();
+                    FindV0Y();
+                    FindSX();
                 }
                 else if (AllTime != null) {
                     FindHalfTime();
                     FindHmax();
                     FindV0();
-                    FindVX0();
-                    FindVY0();
-                    FindS();
+                    FindV0X();
+                    FindV0Y();
+                    FindSX();
                 }
                 else if (V0 != null) {
-                    FindVX0();
-                    FindVY0();
+                    FindV0X();
+                    FindV0Y();
                     FindHalfTime();
                     FindAllTime();
                     FindHmax();
-                    FindS();
+                    FindSX();
                 }
-                else if (VX0 != null) {
+                else if (V0X != null) {
                     FindV0();
                     FindHalfTime();
                     FindAllTime();
                     FindHmax();
-                    FindVY0();
-                    FindS();
+                    FindV0Y();
+                    FindSX();
                 }
-                else if (VY0 != null) {
+                else if (V0Y != null) {
                     FindV0();
-                    FindVX0();
+                    FindV0X();
                     FindHalfTime();
                     FindAllTime();
                     FindHmax();
-                    FindS();
+                    FindSX();
                 }
                 else if (Hmax != null) {
                     FindHalfTime();
                     FindAllTime();
                     FindV0();
-                    FindVX0();
-                    FindVY0();
-                    FindS();
+                    FindV0X();
+                    FindV0Y();
+                    FindSX();
                 }
-                else if (S != null) {
+                else if (SX != null) {
                     FindV0();
                     FindHalfTime();
                     FindAllTime();
                     FindHmax();
-                    FindVX0();
-                    FindVY0();
+                    FindV0X();
+                    FindV0Y();
                 }
             }
         }
@@ -83,31 +83,31 @@ namespace EasyPhysics.Tasks.Kinematics
             if (HalfTime != null) {
                 V0 = Math.Round((G * (double)HalfTime) / DeegresForSin(), RoundCount);
             }
-            else if (S != null) {
-                V0 = Math.Round(Math.Sqrt(((double)S * G) / (2.0 * DeegresForCos() * DeegresForSin())), RoundCount);
+            else if (SX != null) {
+                V0 = Math.Round(Math.Sqrt(((double)SX * G) / (2.0 * DeegresForCos() * DeegresForSin())), RoundCount);
             }
-            else if (VX0 != null) {
-                V0 = Math.Round((double)VX0 / DeegresForCos(), RoundCount);
+            else if (V0X != null) {
+                V0 = Math.Round((double)V0X / DeegresForCos(), RoundCount);
             }
-            else if (VY0 != null) {
-                V0 = Math.Round((double)VY0 / DeegresForSin(), RoundCount);
+            else if (V0Y != null) {
+                V0 = Math.Round((double)V0Y / DeegresForSin(), RoundCount);
             }
-            Console.WriteLine($"V0 is {V0}");
+            // Console.WriteLine($"V0 => {V0} м/c");
         }
 
-        private void FindVX0 ()
+        private void FindV0X ()
         {
             if (V0 != null) {
-                VX0 = Math.Round((double)V0 * DeegresForCos(), RoundCount);
-                Console.WriteLine($"VX0 is {VX0}");
+                V0X = Math.Round((double)V0 * DeegresForCos(), RoundCount);
+                //  Console.WriteLine($"VX0 => {VX0} м/c");
             }
         }
 
-        private void FindVY0 ()
+        private void FindV0Y ()
         {
             if (V0 != null) {
-                VY0 = Math.Round((double)V0 * DeegresForSin(), RoundCount);
-                Console.WriteLine($"VY0 is {VY0}");
+                V0Y = Math.Round((double)V0 * DeegresForSin(), RoundCount);
+                //  Console.WriteLine($"VY0 => {VY0} м/c");
             }
         }
 
@@ -118,15 +118,15 @@ namespace EasyPhysics.Tasks.Kinematics
             if (HalfTime != null) {
                 AllTime = Math.Round(2.0 * (double)HalfTime, RoundCount);
             }
-            Console.WriteLine($"All time is {AllTime}");
+            //  Console.WriteLine($"t польоту => {AllTime} с");
         }
 
-        private void FindS ()
+        private void FindSX ()
         {
-            if (VX0 != null && AllTime != null) {
-                S = Math.Round((double)VX0 * (double)AllTime, RoundCount);
+            if (V0X != null && AllTime != null) {
+                SX = Math.Round((double)V0X * (double)AllTime, RoundCount);
             }
-            Console.WriteLine($"S is {S}");
+            // Console.WriteLine($"S => {SX} м");
         }
 
         private void FindHmax ()
@@ -141,7 +141,7 @@ namespace EasyPhysics.Tasks.Kinematics
                 Hmax = Math.Round((G * Math.Pow((double)HalfTime, 2)) / 2, RoundCount);
             }
 
-            Console.WriteLine($"Hmax is {Hmax}");
+            // Console.WriteLine($"h max => {Hmax} м");
 
         }
 
@@ -165,92 +165,85 @@ namespace EasyPhysics.Tasks.Kinematics
             else if (Hmax != null) {
                 HalfTime = Math.Round(Math.Sqrt((2 * (double)Hmax) / G), RoundCount);
             }
-            Console.WriteLine($"Half time is {HalfTime}");
+            //  Console.WriteLine($"t підйому => {HalfTime} с");
         }
 
         private double DeegresForSin ()
         {
-            // return Math.Round(((double)Angle * Math.PI) / 180.0, RoundCount);
-
-            var result = 0.0;
-
-            switch (Angle) {
-                case 0:
-                    result = 0.0;
-                    break;
-                case 30:
-                    result = 0.5;
-                    break;
-                case 45:
-                    result = Math.Sqrt(2) / 2.0;
-                    break;
-                case 60:
-                    result = Math.Sqrt(3) / 2.0;
-                    break;
-                case 90:
-                    result = 1.0;
-                    break;
-            }
-
-            return Math.Round(result, RoundCount);
+            double radians = (double)Angle * (Math.PI / 180);
+            double value = Math.Sin(radians);
+            return Math.Round(value, RoundCount);
         }
 
         private double DeegresForCos ()
         {
-            // return Math.Round(((double)Angle * Math.PI) / 180.0, RoundCount);
-
-            var result = 0.0;
-
-            switch (Angle) {
-                case 0:
-                    result = 1.0;
-                    break;
-                case 30:
-                    result = Math.Sqrt(3) / 2.0;
-                    break;
-                case 45:
-                    result = Math.Sqrt(2) / 2.0;
-                    break;
-                case 60:
-                    result = 0.5;
-                    break;
-                case 90:
-                    result = 0.0;
-                    break;
-            }
-
-            return Math.Round(result, RoundCount);
+            double radians = (double)Angle * (Math.PI / 180);
+            double value = Math.Cos(radians);
+            return Math.Round(value, RoundCount);
         }
 
 
-        public void FindAbsoluteV (double t)
+
+
+        public double FindAbsoluteV (double t)
         {
-            var VX = VX0;
+            var VX = V0X;
             var VY = 0.0;
             var V = 0.0;
 
             if (t < HalfTime) {
-                VY = Math.Round((double)VY0 - (G * t), RoundCount);
+                VY = Math.Round((double)V0Y - (G * t), RoundCount);
+                V = Math.Round(Math.Sqrt(Math.Pow((double)VY, 2) + Math.Pow((double)VX, 2)), RoundCount);
             }
             if (t == HalfTime) {
                 VY = 0.0;
             }
-            if (t > HalfTime) {
-                VY = Math.Round((double)VY0 + (G * t), RoundCount);
+            if (t > HalfTime && t < AllTime) {
+                VY = Math.Round((double)V0Y + (G * t), RoundCount);
+                V = Math.Round(Math.Sqrt(Math.Pow((double)VY, 2) + Math.Pow((double)VX, 2)), RoundCount);
             }
-            V = Math.Round(Math.Sqrt(Math.Pow((double)VY, 2) + Math.Pow((double)VX, 2)), RoundCount);
+            if (t >= AllTime) {
+                V = 0.0;
+            }
+            //  Console.WriteLine($"Absolute V after {t} seconds => {V} м/c");
 
-            Console.WriteLine($"Absolute V after {t} seconds => {V}");
+            return V;
         }
 
-        public void AbsoluteS (double t)
+        public double FindAbsoluteS (double t)
         {
             var Sabsolute = 0.0;
-            var VX = VX0;
-            if (t < AllTime) {
+            var VX = V0X;
+            if (t <= AllTime) {
                 Sabsolute = Math.Round((double)VX * t, RoundCount);
             }
-            Console.WriteLine($"Absolute S after {t} seconds => {Sabsolute}");
+            if (t > AllTime) {
+                Sabsolute = (double)SX;
+            }
+            //  Console.WriteLine($"Absolute S after {t} seconds => {Sabsolute} м");
+            return Sabsolute;
+        }
+
+        public double FindAbsoluteH (double t)
+        {
+            var Habsolute = 0.0;
+
+            if (t < HalfTime) {
+                Habsolute = Math.Round((double)V0Y * t - (G * Math.Pow(t, 2)) / 2, RoundCount);
+            }
+            if (t == HalfTime) {
+                Habsolute = (double)Hmax;
+            }
+            if (t >= AllTime) {
+                Habsolute = 0.0;
+            }
+            if (t > HalfTime && t <= AllTime) {
+                Habsolute = Math.Round((double)V0Y * t - (G * Math.Pow(t, 2)) / 2, RoundCount);
+            }
+
+            //  Console.WriteLine($"Absolute H after {t} seconds => {Habsolute} м");
+
+            return Habsolute;
         }
 
     }

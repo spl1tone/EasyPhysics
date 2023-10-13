@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // набора атрибутов. Измените значения этих атрибутов для изменения сведений,
 // связанных со сборкой.
 [assembly: AssemblyTitle("EasyPhysics")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Solve Any Physics Problems")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("spl1tOne")]
 [assembly: AssemblyProduct("EasyPhysics")]
-[assembly: AssemblyCopyright("Copyright ©  2023")]
+[assembly: AssemblyCopyright("Copyright ©  2023 By Vlad Levon")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
